@@ -1,0 +1,426 @@
+
+/* Kilimanjaro updated September 2015 */
+
+#include_drs random_map.def 
+
+<PLAYER_SETUP>
+  random_placement 
+	ai_info_map_type OASIS 0 0 0
+
+
+<LAND_GENERATION>
+
+#const SAVANNAH 41
+
+
+#const MOORLAND 44
+
+base_terrain SAVANNAH
+
+#const CRACKEDIT 45
+
+create_player_lands
+{
+  terrain_type SAVANNAH
+  land_percent 100
+  base_size 10
+  border_fuzziness 20
+clumping_factor 20
+other_zone_avoidance_distance 0
+}
+
+create_land
+{
+  terrain_type MOORLAND
+  land_percent 100
+  border_fuzziness 10
+clumping_factor 15
+bottom_border 10
+top_border 10
+left_border 10
+right_border 10
+}
+
+create_land
+{
+  terrain_type MOORLAND
+  land_percent 100
+  border_fuzziness 10
+clumping_factor 15
+bottom_border 10
+top_border 10
+left_border 10
+right_border 10
+}
+
+
+create_land
+{
+  terrain_type MOORLAND
+  land_percent 100
+  border_fuzziness 10
+clumping_factor 15
+bottom_border 10
+top_border 10
+left_border 10
+right_border 10
+}
+
+
+create_land
+{
+  terrain_type MOORLAND
+  land_percent 100
+  border_fuzziness 10
+clumping_factor 15
+bottom_border 10
+top_border 10
+left_border 10
+right_border 10
+}
+
+/* *********************************** */
+<TERRAIN_GENERATION>
+
+create_terrain GRASS_SNOW
+{
+base_terrain MOORLAND
+land_percent 100
+height_limits 7 7
+}
+
+create_terrain SNOW
+{
+base_terrain GRASS_SNOW
+land_percent 100
+spacing_to_other_terrain_types 3
+}
+
+#const ACACIA_FOREST 50
+
+create_terrain ACACIA_FOREST
+{
+base_terrain SAVANNAH
+land_percent 4
+if TINY_MAP
+number_of_clumps 20
+else
+number_of_clumps 30
+endif
+spacing_to_other_terrain_types 4
+set_avoid_player_start_areas
+}
+
+create_terrain WATER
+{
+base_terrain SAVANNAH
+land_percent 8
+number_of_clumps 15
+spacing_to_other_terrain_types 0
+set_avoid_player_start_areas
+}
+
+#const DIRT4 42
+
+create_terrain DIRT4
+{
+base_terrain SAVANNAH
+land_percent 22
+number_of_clumps 60
+spacing_to_other_terrain_types 3
+}
+
+create_terrain ACACIA_FOREST
+{
+base_terrain MOORLAND
+land_percent 8
+number_of_clumps 60
+spacing_to_other_terrain_types 2
+set_avoid_player_start_areas
+}
+
+#const QUICKSAND 46
+
+create_terrain QUICKSAND
+{
+base_terrain WATER
+number_of_clumps 25
+spacing_to_other_terrain_types 0
+land_percent 5
+set_avoid_player_start_areas
+}
+
+<OBJECTS_GENERATION>
+
+
+create_object TOWN_CENTER
+{
+  set_place_for_every_player
+  group_placement_radius     18
+  min_distance_to_players    0
+  max_distance_to_players    0
+}
+
+create_object VILLAGER
+{
+  set_place_for_every_player
+  min_distance_to_players       6
+  max_distance_to_players       6
+ }
+
+create_object SCOUT
+{
+  number_of_objects             1
+  set_place_for_every_player
+  min_distance_to_players       7
+  max_distance_to_players       9
+ }
+
+if LUDIKRIS_MAP
+create_object RELIC
+{
+   number_of_objects            250
+   min_distance_to_players     25
+   temp_min_distance_group_placement 110
+}
+else
+create_object RELIC
+{
+   number_of_objects            5
+   min_distance_to_players     25
+   temp_min_distance_group_placement 20
+}
+endif
+
+if REGICIDE
+
+create_object KING
+{
+  set_place_for_every_player
+  min_distance_to_players       6
+  max_distance_to_players       8
+}
+
+create_object WATCH_TOWER
+{
+  set_place_for_every_player
+  min_distance_to_players    10
+  max_distance_to_players    12
+}
+endif
+
+#const DLC_GOAT 1060
+
+create_object DLC_GOAT
+{
+   number_of_objects 4
+   set_loose_grouping
+   set_gaia_object_only
+   set_place_for_every_player
+   min_distance_to_players    6
+   max_distance_to_players    9
+}
+
+start_random
+percent_chance 50
+#define ZEBRIK
+percent_chance 50
+#define POMATENEJPTAK
+end_random
+
+#const ZEBRA 1019
+#const OSTRICH 1026
+
+if ZEBRIK
+
+create_object ZEBRA
+{
+  number_of_objects          6
+  group_placement_radius     3
+  set_loose_grouping
+  set_gaia_object_only
+  set_place_for_every_player
+  min_distance_to_players    12
+  max_distance_to_players    16
+}
+
+elseif POMATENEJPTAK
+
+create_object OSTRICH
+{
+  number_of_objects          6
+  group_placement_radius     3
+  set_loose_grouping
+  set_gaia_object_only
+  set_place_for_every_player
+  min_distance_to_players    12
+  max_distance_to_players    16
+}
+
+endif
+
+#const ELEPHANT 936
+
+create_object ELEPHANT
+{
+  number_of_objects          1
+  group_placement_radius     3
+  set_loose_grouping
+  set_gaia_object_only
+  set_place_for_every_player
+  min_distance_to_players    12
+  max_distance_to_players    15
+}
+
+create_object GOLD
+{
+  number_of_objects          4
+  group_placement_radius     3
+  set_tight_grouping
+  set_gaia_object_only
+  set_place_for_every_player
+  min_distance_to_players    7
+  max_distance_to_players    12
+  temp_min_distance_group_placement  5
+}
+
+create_object GOLD
+{
+  number_of_objects          3
+  group_placement_radius     3
+  set_tight_grouping
+  set_gaia_object_only
+  set_place_for_every_player
+  min_distance_to_players    10
+  max_distance_to_players    16
+  temp_min_distance_group_placement  5
+}
+
+create_object STONE
+{
+  number_of_objects          4
+  group_placement_radius     3
+  set_tight_grouping
+  set_gaia_object_only
+  set_place_for_every_player
+  min_distance_to_players    7
+  max_distance_to_players    11
+  temp_min_distance_group_placement  5
+}
+
+create_object STONE
+{
+  number_of_objects          3
+  group_placement_radius     3
+  set_tight_grouping
+  set_gaia_object_only
+  set_place_for_every_player
+  min_distance_to_players    10
+  max_distance_to_players    16
+  temp_min_distance_group_placement  5
+}
+
+/* DISTANT GOLD AND STONE */
+
+create_object GOLD
+{
+  number_of_groups 180
+  number_of_objects 4
+  group_placement_radius 2
+  set_tight_grouping
+  set_gaia_object_only
+  min_distance_to_players 30
+  temp_min_distance_group_placement 45
+  max_distance_to_other_zones 2
+}
+
+create_object STONE
+{
+  number_of_groups 180
+  number_of_objects 3
+  group_placement_radius 2
+  set_tight_grouping
+  set_gaia_object_only
+  min_distance_to_players 30
+  temp_min_distance_group_placement 45
+  max_distance_to_other_zones 2
+}
+
+#const ORANGEBUSH 1059
+
+create_object ORANGEBUSH 
+{
+   number_of_objects 4
+   number_of_groups 1
+   set_tight_grouping
+   set_gaia_object_only
+   set_place_for_every_player
+   min_distance_to_players    11
+   max_distance_to_players    13
+}
+
+#const ACACIA_TREEE 1063
+
+create_object ACACIA_TREEE
+{
+  number_of_objects             2
+  set_gaia_object_only
+  set_place_for_every_player
+  min_distance_to_players       4
+  max_distance_to_players       5
+  min_distance_group_placement  2
+}
+create_object ACACIA_TREEE
+{
+  number_of_objects             3
+  set_gaia_object_only
+  set_place_for_every_player
+  min_distance_to_players       6
+  max_distance_to_players       8
+  min_distance_group_placement  2
+}
+
+#const STORK 1028
+
+create_object STORK
+{
+   number_of_objects         4
+   set_scaling_to_map_size
+}
+
+create_object ACACIA_TREEE
+{
+  number_of_objects          20
+  set_gaia_object_only
+  set_scaling_to_map_size
+  min_distance_to_players    8
+	terrain_to_place_on SAVANNAH
+}
+
+#const LION 1029
+
+create_object LION
+{
+     number_of_groups 30
+     set_loose_grouping
+        number_of_objects 1
+     set_gaia_object_only
+     temp_min_distance_group_placement 60
+     min_distance_to_players 32
+	terrain_to_place_on SAVANNAH
+}
+
+
+/* ****************************************************** */
+
+<ELEVATION_GENERATION>
+
+create_elevation 7
+{
+ base_terrain MOORLAND
+  number_of_clumps 3000
+  number_of_tiles 60000
+spacing_to_other_terrain_types 20
+clumping_factor 1
+spacing 3
+}

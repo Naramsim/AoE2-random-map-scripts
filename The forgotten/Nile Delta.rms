@@ -1,0 +1,475 @@
+
+/* Nile Delta */
+
+#include_drs random_map.def 
+
+<PLAYER_SETUP>
+  grouped_by_team
+  nomad_resources
+	ai_info_map_type MIGRATION 1 0 0
+
+
+<LAND_GENERATION>
+
+#const SAVANNAH 41
+#const MOORLAND 44
+#const CRACKEDIT 45
+
+base_terrain WATER
+
+create_player_lands
+{
+  terrain_type CRACKEDIT
+land_percent 40
+  base_size 3
+  border_fuzziness 20
+clumping_factor 20
+other_zone_avoidance_distance 6
+bottom_border 70
+left_border 70
+}
+
+create_land
+{
+  terrain_type DEEP_WATER
+land_percent 100
+  base_size 12
+  border_fuzziness 20
+clumping_factor 20
+other_zone_avoidance_distance 6
+top_border 45
+right_border 45
+}
+
+if TINY_MAP
+create_land
+{
+  terrain_type MED_WATER
+land_percent 100
+  base_size 12
+  border_fuzziness 20
+clumping_factor 20
+other_zone_avoidance_distance 6
+top_border 13
+right_border 13
+bottom_border 50
+left_border 50
+}
+elseif HUGE_MAP
+create_land
+{
+  terrain_type MED_WATER
+land_percent 100
+  base_size 12
+  border_fuzziness 20
+clumping_factor 20
+other_zone_avoidance_distance 6
+top_border 23
+right_border 23
+bottom_border 55
+left_border 55
+}
+elseif GIANT_MAP
+create_land
+{
+  terrain_type MED_WATER
+land_percent 100
+  base_size 12
+  border_fuzziness 20
+clumping_factor 20
+other_zone_avoidance_distance 6
+top_border 23
+right_border 23
+bottom_border 55
+left_border 55
+}
+elseif LUDIKRIS_MAP
+create_land
+{
+  terrain_type MED_WATER
+land_percent 100
+  base_size 12
+  border_fuzziness 20
+clumping_factor 20
+other_zone_avoidance_distance 6
+top_border 23
+right_border 23
+bottom_border 55
+left_border 55
+}
+else
+create_land
+{
+  terrain_type MED_WATER
+land_percent 100
+  base_size 12
+  border_fuzziness 20
+clumping_factor 20
+other_zone_avoidance_distance 6
+top_border 18
+right_border 18
+bottom_border 55
+left_border 55
+}
+endif
+
+create_land
+{
+  terrain_type MED_WATER
+land_percent 100
+  base_size 12
+  border_fuzziness 20
+clumping_factor 20
+other_zone_avoidance_distance 6
+top_border 28
+right_border 28
+bottom_border 45
+left_border 45
+}
+
+create_land
+{
+  terrain_type MED_WATER
+land_percent 100
+  base_size 12
+  border_fuzziness 20
+clumping_factor 20
+other_zone_avoidance_distance 6
+top_border 36
+right_border 45
+bottom_border 55
+left_border 35
+}
+
+create_land
+{
+  terrain_type MED_WATER
+land_percent 100
+  base_size 12
+  border_fuzziness 20
+clumping_factor 20
+other_zone_avoidance_distance 6
+top_border 45
+right_border 36
+bottom_border 35
+left_border 55
+}
+
+<TERRAIN_GENERATION>
+
+create_terrain SAVANNAH
+{
+base_terrain WATER
+land_percent 45
+number_of_clumps 20
+spacing_to_other_terrain_types 4
+set_avoid_player_start_areas
+}
+
+create_terrain SAVANNAH
+{
+base_terrain MED_WATER
+land_percent 4
+number_of_clumps 10
+spacing_to_other_terrain_types 2
+set_avoid_player_start_areas
+}
+
+create_terrain WATER
+{
+base_terrain MED_WATER
+land_percent 100
+number_of_clumps 100
+spacing_to_other_terrain_types 0
+set_avoid_player_start_areas
+}
+
+create_terrain WATER
+{
+base_terrain DEEP_WATER
+land_percent 100
+number_of_clumps 100
+spacing_to_other_terrain_types 0
+set_avoid_player_start_areas
+}
+
+#const ACACIA_FOREST 50
+
+create_terrain ACACIA_FOREST
+{
+base_terrain SAVANNAH
+land_percent 9
+number_of_clumps 20
+spacing_to_other_terrain_types 3
+set_avoid_player_start_areas
+}
+
+#const DIRT4 42
+
+create_terrain DIRT4
+{
+base_terrain SAVANNAH
+land_percent 3
+number_of_clumps 36
+spacing_to_other_terrain_types 0
+set_avoid_player_start_areas
+}
+
+
+create_terrain MED_WATER
+{
+base_terrain WATER
+number_of_clumps 10
+spacing_to_other_terrain_types 2
+land_percent 40
+}
+
+create_terrain DEEP_WATER
+{
+base_terrain MED_WATER
+number_of_clumps 6
+spacing_to_other_terrain_types 6
+land_percent 20
+}
+
+
+<OBJECTS_GENERATION>
+
+create_object VILLAGER
+{
+  set_place_for_every_player
+  min_distance_to_players       1
+  max_distance_to_players       3
+ }
+
+if LUDIKRIS_MAP
+create_object RELIC
+{
+   number_of_objects            250
+   min_distance_to_players     25
+   temp_min_distance_group_placement 110
+}
+else
+create_object RELIC
+{
+   number_of_objects            5
+   min_distance_to_players     25
+   temp_min_distance_group_placement 20
+}
+endif
+
+if REGICIDE
+
+create_object KING
+{
+  set_place_for_every_player
+  min_distance_to_players       1
+  max_distance_to_players       3
+}
+
+endif
+
+#const GOATEE 1060
+
+create_object GOATEE
+{
+   number_of_objects 4
+   set_loose_grouping
+   set_gaia_object_only
+   set_place_for_every_player
+   min_distance_to_players    1
+   max_distance_to_players    3
+}
+
+#const ZEBRA 1019
+#const OSTRICH 1026
+
+create_object OSTRICH
+{
+  number_of_groups 180
+  number_of_objects 3
+  group_placement_radius 3
+  set_loose_grouping
+  set_gaia_object_only
+  temp_min_distance_group_placement 26
+terrain_to_place_on SAVANNAH
+}
+
+create_object GOATEE
+{
+  number_of_groups 180
+  number_of_objects 2
+  group_placement_radius 3
+  set_loose_grouping
+  set_gaia_object_only
+terrain_to_place_on SAVANNAH
+  temp_min_distance_group_placement 26
+}
+
+#const ELEPHANT 936
+
+create_object ELEPHANT
+{
+  number_of_groups 180
+  number_of_objects 1
+  group_placement_radius 3
+  set_loose_grouping
+  set_gaia_object_only
+terrain_to_place_on SAVANNAH
+  temp_min_distance_group_placement 26
+}
+
+/* DISTANT GOLD AND STONE */
+
+create_object GOLD
+{
+  number_of_groups 180
+  number_of_objects 4
+  group_placement_radius 2
+  set_tight_grouping
+  set_gaia_object_only
+terrain_to_place_on SAVANNAH
+  temp_min_distance_group_placement 40
+  max_distance_to_other_zones 4
+}
+
+create_object STONE
+{
+  number_of_groups 180
+  number_of_objects 3
+  group_placement_radius 2
+  set_tight_grouping
+  set_gaia_object_only
+terrain_to_place_on SAVANNAH
+  temp_min_distance_group_placement 40
+  max_distance_to_other_zones 4
+}
+
+#const STORK 1028
+
+create_object STORK
+{
+   number_of_objects         4
+   set_scaling_to_map_size
+}
+
+#const ORANGEBUSH 1059
+
+create_object ORANGEBUSH
+{
+  number_of_groups 180
+  number_of_objects 3
+  group_placement_radius 2
+  set_tight_grouping
+  set_gaia_object_only
+terrain_to_place_on SAVANNAH
+  temp_min_distance_group_placement 60
+  max_distance_to_other_zones 4
+}
+
+
+#const ACCACIASTUMP 1063
+
+create_object ACCACIASTUMP 
+{
+  number_of_objects             2
+  set_gaia_object_only
+  set_place_for_every_player
+  min_distance_to_players       4
+  max_distance_to_players       5
+  min_distance_group_placement  2
+}
+create_object ACCACIASTUMP 
+{
+  number_of_objects             3
+  set_gaia_object_only
+  set_place_for_every_player
+  min_distance_to_players       6
+  max_distance_to_players       8
+  min_distance_group_placement  2
+}
+
+create_object ACCACIASTUMP 
+{
+  number_of_objects          20
+  set_gaia_object_only
+  set_scaling_to_map_size
+  min_distance_to_players    8
+}
+
+#const AFROBOULDER_A 1048
+#const AFROBOULDER_B 1049
+#const AFROBOULDER_C 1050
+#const AFROBUSH 1053
+
+#const CROCODILE 1031
+
+create_object CROCODILE
+{
+     number_of_groups 30
+     set_loose_grouping
+        number_of_objects 1
+     set_gaia_object_only
+     temp_min_distance_group_placement 60
+     min_distance_to_players 60
+}
+
+create_object DORADO
+{
+  number_of_objects 999
+  set_scaling_to_map_size
+  set_gaia_object_only
+  max_distance_to_other_zones 5
+     temp_min_distance_group_placement 8
+}
+
+create_object SHORE_FISH
+{
+  number_of_objects 999
+     set_scaling_to_map_size
+     temp_min_distance_group_placement 15
+     set_gaia_object_only
+}
+
+
+create_object AFROBOULDER_A 
+{
+  number_of_objects 999
+     set_scaling_to_map_size
+     temp_min_distance_group_placement 160
+     set_gaia_object_only
+     min_distance_to_players 25
+    terrain_to_build_on SAVANNAH
+}
+
+create_object AFROBOULDER_B
+{
+  number_of_objects 999
+     set_scaling_to_map_size
+     temp_min_distance_group_placement 160
+     set_gaia_object_only
+     min_distance_to_players 25
+    terrain_to_build_on SAVANNAH
+}
+
+create_object AFROBOULDER_C
+{
+  number_of_objects 999
+     set_scaling_to_map_size
+     temp_min_distance_group_placement 160
+     set_gaia_object_only
+     min_distance_to_players 25
+    terrain_to_build_on SAVANNAH
+}
+
+/* ****************************************************** */
+
+<ELEVATION_GENERATION>
+
+create_elevation 3
+{
+ base_terrain SAVANNAH
+  number_of_clumps 250
+  number_of_tiles 16000
+clumping_factor 1
+}

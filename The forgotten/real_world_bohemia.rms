@@ -1,0 +1,189 @@
+/* REAL WORLD MAP - CZECH REPUBLIC - HIDDEN MAP */
+
+#include_drs random_map.def
+
+<PLAYER_SETUP>
+
+  nomad_resources
+  ai_info_map_type NOMAD 1 0 0
+
+<TERRAIN_GENERATION>
+
+#const BLACK 47
+
+create_terrain BLACK
+{
+base_terrain DEEP_WATER
+number_of_clumps 100
+spacing_to_other_terrain_types 0
+land_percent 100
+}
+
+create_terrain BLACK
+{
+base_terrain DEEP_WATER
+number_of_clumps 100
+spacing_to_other_terrain_types 0
+land_percent 100
+}
+
+create_terrain MED_WATER
+{
+base_terrain WATER
+number_of_clumps 10
+spacing_to_other_terrain_types 2
+land_percent 40
+}
+
+create_terrain DEEP_WATER
+{
+base_terrain MED_WATER
+number_of_clumps 6
+spacing_to_other_terrain_types 3
+land_percent 20
+}
+
+<OBJECTS_GENERATION>
+
+
+#const STORK 1028
+
+create_object STORK
+{
+  number_of_groups 999
+  number_of_objects 1
+  group_placement_radius 3
+  set_tight_grouping
+  set_gaia_object_only
+min_distance_group_placement 35
+  max_distance_to_other_zones 20
+terrain_to_place_on BLACK
+}
+
+create_object VILLAGER
+{
+  set_place_for_every_player
+  min_distance_to_players       20
+  max_distance_to_players       150
+ }
+
+if REGICIDE
+
+create_object KING
+{
+  set_place_for_every_player
+  min_distance_to_players       2
+  max_distance_to_players       12
+}
+
+endif
+
+
+create_object SHEEP
+{
+   number_of_objects 2
+   number_of_groups 999
+   set_loose_grouping
+   set_gaia_object_only
+temp_min_distance_group_placement 25
+}
+
+create_object SHEEP
+{
+   number_of_objects 1
+   number_of_groups 999
+   set_loose_grouping
+   set_gaia_object_only
+temp_min_distance_group_placement 20
+}
+
+create_object BOAR
+{
+   number_of_objects 1
+   number_of_groups 999
+   set_loose_grouping
+   set_gaia_object_only
+temp_min_distance_group_placement 25
+}
+
+create_object DEER
+{
+   number_of_objects 4
+   number_of_groups 999
+   set_loose_grouping
+   set_gaia_object_only
+temp_min_distance_group_placement 22
+}
+
+create_object GOLD
+{
+  number_of_groups 999
+  number_of_objects 4
+  group_placement_radius 3
+  set_tight_grouping
+  set_gaia_object_only
+temp_min_distance_group_placement 25
+  max_distance_to_other_zones 3
+}
+
+create_object STONE
+{
+  number_of_groups 999
+  number_of_objects 3
+  group_placement_radius 3
+  set_tight_grouping
+  set_gaia_object_only
+temp_min_distance_group_placement 25
+  max_distance_to_other_zones 3
+}
+
+create_object RELIC
+{
+  number_of_objects 1
+  number_of_groups 150
+  group_placement_radius 3
+  set_tight_grouping
+  set_gaia_object_only
+  temp_min_distance_group_placement 50
+}
+
+create_object FORAGE
+{
+  number_of_groups 999
+  number_of_objects 4
+  group_placement_radius 3
+  set_tight_grouping
+  set_gaia_object_only
+temp_min_distance_group_placement 60
+  max_distance_to_other_zones 3
+}
+
+create_object OAKTREE
+{
+   number_of_objects 4
+   number_of_groups 999
+   set_loose_grouping
+   set_gaia_object_only
+temp_min_distance_group_placement 35
+}
+
+/* Captain Fin New */
+
+create_object DORADO
+{
+  number_of_objects 999
+  set_scaling_to_map_size
+  set_gaia_object_only
+  max_distance_to_other_zones 5
+     temp_min_distance_group_placement 8
+}
+
+create_object SHORE_FISH
+{
+  number_of_objects 999
+     set_scaling_to_map_size
+     temp_min_distance_group_placement 8
+     set_gaia_object_only
+}
+
+/* Captain Fin New end */
